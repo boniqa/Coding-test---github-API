@@ -1,7 +1,17 @@
 <div class="container">
 
+  <div class="loading">
+    <div>
+      <div class="c1"></div>
+      <div class="c2"></div>
+      <div class="c3"></div>
+      <div class="c4"></div>
+    </div>
+    <span>loading</span>
+  </div>
+
   <h1 class="text-center">
-    <span> {{repo}} releases </span>
+    <span> {{repo_name}} releases </span>
     <br/>
   </h1>
 
@@ -24,7 +34,19 @@
 
         <div class="panel-body">
           <div class="list-group">
-            <div ng-repeat="rel in releasesData | filter:searchText  | orderBy:predicate:reverse" class="list-group-item ">
+
+            <table ng-table="relTable" class="table" show-filter="true">
+              <tr ng-repeat="rel in data | filter:searchText  | orderBy:predicate:reverse" class="list-group-item ">
+                <td data-title="name">{{rel.name}}</td>
+                <td data-title="tag">{{rel.tag_name}}</td>
+                <td data-title="author">{{rel.author.login}}</td>
+                <td data-title="avatar"><img src="{{rel.author.avatar_url}}" alt="Avatar"></td>
+                <td data-title="published_at">  <span>Published at: </span>{{rel.published_at | date : short : timezone}} </td>
+                <td data-title="release">  <a href="{{rel.html_url}}">Release note</a> </td>
+              </tr>
+              </table>
+
+            <!-- <div ng-repeat="rel in releasesData | filter:searchText  | orderBy:predicate:reverse" class="list-group-item ">
                 <div class="row">
                     <div class="col-md-8">
 
@@ -40,7 +62,7 @@
                         </dl>
                     </div>
                 </div>
-            </div>
+            </div> -->
           </div>
 
         </div>

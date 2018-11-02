@@ -1,14 +1,56 @@
-var gitApp = angular.module( 'gitApp', ['ui.router']);
+var gitApp = angular.module( 'gitApp', ['ui.router', 'ngAnimate', 'ngTable']);
 
-gitApp.run(['$rootScope' , function($rootScope){
-  $rootScope.on('$stateChangeStart', function(e, toState, toParams, fromState, fromParams, options){
-    console.log('in $stateChangeStart');
-  });
+gitApp.service('SpinnerService', ['$rootScope', function($rootScope) {
+  function showSpinner($rootScope){
+    console.log('here');
+    $('.loading').show();
+  };
+  function hideSpinner($rootScope){
+    console.log('now here');
+    $('.loading').hide();
+  };
 
-  $rootScope.on('$stateChangeSuccess', function(e, toState, toParams, fromState, fromParams){
-    console.log('in $stateChangeSuccess');
-  });
+  var count = 0;
+  return {
+    transitionStart: function() { if (++count > 0) showSpinner(); },
+    transitionEnd: function() { if (--count <= 0) hideSpinner(); },
+  }
 }]);
+
+gitApp.run(function($transitions) {
+
+  $transitions.onStart({ }, function(trans) {
+    var SpinnerService = trans.injector().get('SpinnerService');
+    SpinnerService.transitionStart();
+    trans.promise.finally(SpinnerService.transitionEnd);
+  });
+})
+
+// gitApp.run(run);
+// run.$inject = ['$rootScope'];
+// function run ($rootScope) {
+//   $rootScope.spinner = {active: true};
+// }
+
+
+
+
+
+// gitApp.run(['$rootScope' , function($rootScope){
+//   $rootScope.$on('$viewContentLoading', function(e, toState, toParams, fromState, fromParams, options){
+//     // console.log('in $stateChangeStart');
+//     // if( toState.resolve){
+//       $rootScope.isLoading = true;
+//     // }
+//   });
+//
+//   $rootScope.$on('$viewContentLoaded', function(e, toState, toParams, fromState, fromParams){
+//     // console.log('in $stateChangeSuccess');
+//     // if( toState.resolve){
+//       $rootScope.isLoading = false;
+//     // }
+//   });
+// }]);
 // gitApp.config(function ($routeProvider){
 //     $routeProvider
 //       .when('/profile',
@@ -29,7 +71,7 @@ gitApp.run(['$rootScope' , function($rootScope){
 //                 .otherwise({redirectTo: '/profile'});
 // });
 
-gitApp.config(['$stateProvider', '$urlRouterProvider', 'RepoService', '$q', function ($stateProvider, $urlRouterProvider, RepoService, $q) {
+gitApp.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
 
   $urlRouterProvider.otherwise('/');
 
@@ -39,57 +81,36 @@ gitApp.config(['$stateProvider', '$urlRouterProvider', 'RepoService', '$q', func
       controller: 'gitHubController',
       templateUrl: 'templates/home.html',
       resolve: {
-        'allRepos' : function(){
-          var theResolvePromise = $q.defer();
-          theResolvePromise.resolve({
-              repos: ['RepoService', function(RepoService){
+              result: ['RepoService', function(RepoService){
                 return RepoService.getRepos();
               }],
-           });
-           console.log(theResolvePromise.promise);
-           return theResolvePromise.promise;
+              info: ['RepoService', function(RepoService){
+                return RepoService.getInfo();
+              }]
        }
-     }
-        // result: ['$q', '$stateParams', 'RepoService', function ($q, $stateParams, RepoService) {
-        //                     console.log(RepoService.getRepos());
-        //                     RepoService.getRepos()
-        //                         .then(function (result) {
-        //                             console.log(result);
-        //                             // return result;
-        //                         }).catch(function (result) {
-        //                             var deferred = $q.defer();
-        //                             if (result.status < 500) { deferred.resolve(result); } else { deferred.reject(result); }
-        //                             // return deferred.promise;
-        //                             console.log(deferred.promise);
-        //                         });
-        //               }],
+     })
+     .state('release', {
+       url: '/release/:name',
+       controller: 'ReleaseController',
+       templateUrl: 'templates/release.html',
+       resolve: {
+         result: ['RepoService', '$stateParams', function(RepoService, $stateParams){
+           var name = $stateParams.name;
+           return RepoService.getReposReleases(name);
+         }]
+       }
 
-    })
-    // .state('release', {
-    //   url: '/release/:name',
-    //   controller: 'ReleaseController',
-    //   templateUrl: 'templates/release.html',
-    //   resolve: {
-    //     result: function(RepoService, $stateParams){
-    //       var name = $stateParams.name;
-    //
-    //       return RepoService.getReposReleases(name);
-    //     }
-    //   }
-    //
-    // })
-    // .state('commits', {
-    //   url: '/commits/:name',
-    //   controller: 'CommitController',
-    //   templateUrl: 'templates/commits.html',
-    //   resolve: {
-    //     result: function(RepoService, $stateParams){
-    //       var name = $stateParams.name;
-    //       return RepoService.getReposCommits(name);
-    //     }
-    //   }
-    //
-    // });
-;
+     })
+     .state('commits', {
+       url: '/commits/:name',
+       controller: 'CommitController',
+       templateUrl: 'templates/commits.html',
+       resolve: {
+         result: ['RepoService', '$stateParams', function(RepoService, $stateParams){
+           var name = $stateParams.name;
+           return RepoService.getReposCommits(name);
+         }]
+       }
 
-}]);
+     });
+  }]);

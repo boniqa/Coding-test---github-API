@@ -1,5 +1,15 @@
 <div class="container">
 
+  <div class="loading">
+    <div>
+      <div class="c1"></div>
+      <div class="c2"></div>
+      <div class="c3"></div>
+      <div class="c4"></div>
+    </div>
+    <span>loading</span>
+  </div>
+
   <h1 class="text-center">
     <span> {{userData.name}} profile</span>
     <br/>
@@ -22,7 +32,24 @@
 
         <div class="panel-body">
           <div class="list-group">
-            <div ng-repeat="repo in repoData | filter:searchText  | orderBy:predicate:reverse" class="list-group-item ">
+
+            <table ng-table="repoTable" class="table" show-filter="true">
+              <tr ng-repeat="repo in data | filter:searchText  | orderBy:predicate:reverse" class="list-group-item ">
+                <td data-title="name">{{repo.name}}</td>
+                <td data-title="description">{{repo.description}}</td>
+                <td data-title="language">{{repo.language}}</td>
+                <td data-title="link">  <a href="{{repo.html_url}}" class="">Link to repository</a></td>
+                <td data-title="release">  <p><a href="#!/release/{{repo.name}}">Show releases</a></p></td>
+                <td data-title="commit">  <p><a href="#!/commits/{{repo.name}}">Show commits</a></p></td>
+                <td data-title="updated_at">  <span>Last Updated: </span>{{repo.updated_at | date : short : timezone}} </td>
+                <td data-title="created">  <span>Created:  </span>{{repo.created_at | date : short : timezone}} </td>
+                
+
+
+              </tr>
+              </table>
+
+            <!-- <div ng-repeat="repo in repoData | filter:searchText  | orderBy:predicate:reverse" class="list-group-item ">
                 <div class="row">
                     <div class="col-md-8">
                         <h4>{{repo.name}}
@@ -32,7 +59,7 @@
                         <small>
                           <p>Languages: {{repo.language}}</p>
                             <a href="{{repo.html_url}}" class="">
-                                <i class="fa fa-link"></i> Link to repository
+                                Link to repository
                             </a>
                         </small>
                           <p><a href="#!/release/{{repo.name}}">Show releases</a></p>
@@ -47,7 +74,7 @@
                         </dl>
                     </div>
                 </div>
-            </div>
+            </div> -->
           </div>
 
         </div>
