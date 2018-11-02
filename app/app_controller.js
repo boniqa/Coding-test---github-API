@@ -1,26 +1,25 @@
-gitApp.controller('gitHubController', ['$scope', 'RepoService', function( $scope, RepoService) {
+gitApp.controller('gitHubController', ['$scope', 'result', function( $scope, result ) {
 
-  $scope.userData = [];
-  $scope.repoData = [];
-  init();
-
-  function init(){
-    RepoService.getInfo().then(function(data){
-      $scope.userData = data;
-      // console.log( $scope.userData);
-    });
-
-    RepoService.getRepos().then(function(data){
-      $scope.repoData = data;
-    });
-
-  }
+  $scope.repoData = result;
+  // init();
+  //
+  // function init(){
+  //   RepoService.getInfo().then(function(data){
+  //     $scope.userData = data;
+  //     // console.log( $scope.userData);
+  //   });
+  //
+  //   RepoService.getRepos().then(function(data){
+  //     $scope.repoData = data;
+  //   });
+  //
+  // }
 
 }]);
 
-gitApp.controller('ReleaseController', ['$scope', 'RepoService', '$routeParams', function ($scope, RepoService, $routeParams){
+gitApp.controller('ReleaseController', ['$scope', 'RepoService', '$stateParams', function ($scope, RepoService, $stateParams){
   $scope.releasesData = [];
-  var repo_name = $routeParams.name;
+  var repo_name = $stateParams.name;
   init();
 
   function init(){
@@ -33,9 +32,9 @@ gitApp.controller('ReleaseController', ['$scope', 'RepoService', '$routeParams',
 
 }]);
 
-gitApp.controller('CommitController', ['$scope', 'RepoService', '$routeParams', function ($scope, RepoService, $routeParams){
+gitApp.controller('CommitController', ['$scope', 'RepoService', '$stateParams', function ($scope, RepoService, $stateParams){
   $scope.commitsData = [];
-  var repo_name = $routeParams.name;
+  var repo_name = $stateParams.name;
   init();
 
   function init(){
