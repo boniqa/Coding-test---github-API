@@ -13,22 +13,19 @@
   <h1 class="text-center">
     <span> {{repo_name}} releases </span>
     <br/>
+    <a href="#!/profile/" class="btn btn-outline-secondary"<i class="fas fa-arrow-left"></i>  Back
+    </a>
   </h1>
 
   <div class="container">
         <div class="panel-heading">
-
-                            <form class="form-inline">
-                                <span>
-                                    <h4>Releases <span class="badge">{{releasesData.length}}</span>
-                                    <input ng-model="searchText" placeholder="Find a release..." class="form-control input-sm">
-                                    </h4>
-                                </span>
-
-                            </form>
-                            <span>
-                                <a href="#!/profile/" class="btn btn-secondary ">Back</a>
-                            </span>
+            <form class="form-inline">
+                  <span>
+                      <h4>Releases <span class="badge">{{releasesData.length}}</span>
+                        <input ng-model="searchText" placeholder="Find a release..." class="form-control input-sm">
+                      </h4>
+                  </span>
+            </form>
 
         </div>
 
@@ -36,33 +33,16 @@
           <div class="list-group">
 
             <table ng-table="relTable" class="table" show-filter="true">
-              <tr ng-repeat="rel in data | filter:searchText  | orderBy:predicate:reverse" class="list-group-item ">
+              <tr ng-repeat="rel in $data | filter:searchText  | orderBy:predicate:reverse" class="list-group-item ">
+                <td data-title="tag" class="td-text-small"><i class="fas fa-tag"></i>{{rel.tag_name}}</td>
                 <td data-title="name">{{rel.name}}</td>
-                <td data-title="tag">{{rel.tag_name}}</td>
-                <td data-title="author">{{rel.author.login}}</td>
-                <td data-title="avatar"><img src="{{rel.author.avatar_url}}" alt="Avatar"></td>
-                <td data-title="published_at">  <span>Published at: </span>{{rel.published_at | date : short : timezone}} </td>
-                <td data-title="release">  <a href="{{rel.html_url}}">Release note</a> </td>
+                <td data-title="author" class="td-text-small">{{rel.author.login}}</td>
+                <td data-title="avatar"><img src="{{rel.author.avatar_url}}" alt="Avatar" class="avatar"></td>
+                <td data-title="published_at" class="td-text-small">  <span>Published at: </span>{{rel.published_at | date : short : timezone}} </td>
+                <td data-title="release"> <a href="{{rel.html_url}}" class="btn btn-outline-secondary">Release note</a></td>
               </tr>
               </table>
 
-            <!-- <div ng-repeat="rel in releasesData | filter:searchText  | orderBy:predicate:reverse" class="list-group-item ">
-                <div class="row">
-                    <div class="col-md-8">
-
-                      <h4>{{rel.name}}</h4>
-                      <h6><small>{{rel.tag_name}}</small></h6>
-                      <p><small>Author: {{rel.author.login}} <img src="{{rel.author.avatar_url}}" alt="Avatar"></small></p>
-                    </div>
-                    <div class="col-md-4">
-                        <dl class="dl-horizontal">
-                          <dt>Published date:</dt>
-                          <dd>{{ rel.published_at | date : short : timezone }}</dd>
-                          <dd><a href="{{rel.html_url}}">Release note</a></dd>
-                        </dl>
-                    </div>
-                </div>
-            </div> -->
           </div>
 
         </div>

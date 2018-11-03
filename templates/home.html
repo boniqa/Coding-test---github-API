@@ -13,68 +13,36 @@
   <h1 class="text-center">
     <span> {{userData.name}} profile</span>
     <br/>
-    <a href="{{userData.html_url}}" class="btn btn-secondary" target="_blank">
+    <a href="{{userData.html_url}}" class="btn btn-outline-secondary" target="_blank"> <i class="fab fa-github"></i>
     {{userData.login}}
     </a>
   </h1>
 
-  <div class="container">
+  <div class="container main-table">
         <div class="panel-heading">
-
-                            <form class="form-inline">
-                                <span>
-                                    <h4>Repos <span class="badge">{{repoData.length}}</span>
-                                    <input ng-model="searchText" placeholder="Find a repo..." class="form-control input-sm">
-                                    </h4>
-                                </span>
-                            </form>
+                <form class="form-inline">
+                      <span>
+                          <h4>Repos <span class="badge">{{repoData.length}}</span>
+                            <input ng-model="searchText" placeholder="Find a repo..." class="form-control input-sm">
+                          </h4>
+                      </span>
+                </form>
         </div>
 
         <div class="panel-body">
           <div class="list-group">
 
             <table ng-table="repoTable" class="table" show-filter="true">
-              <tr ng-repeat="repo in data | filter:searchText  | orderBy:predicate:reverse" class="list-group-item ">
-                <td data-title="name">{{repo.name}}</td>
-                <td data-title="description">{{repo.description}}</td>
-                <td data-title="language">{{repo.language}}</td>
-                <td data-title="link">  <a href="{{repo.html_url}}" class="">Link to repository</a></td>
-                <td data-title="release">  <p><a href="#!/release/{{repo.name}}">Show releases</a></p></td>
-                <td data-title="commit">  <p><a href="#!/commits/{{repo.name}}">Show commits</a></p></td>
-                <td data-title="updated_at">  <span>Last Updated: </span>{{repo.updated_at | date : short : timezone}} </td>
-                <td data-title="created">  <span>Created:  </span>{{repo.created_at | date : short : timezone}} </td>
-                
-
-
-              </tr>
+              <tr ng-repeat="repo in $data | filter:searchText  | orderBy:predicate:reverse" class="list-group-item ">
+                <td data-title="name" colspan="2" class="name-link"><a href="{{repo.html_url}}" target="_blank"><i class="fab fa-github"></i>  {{repo.name}}</a></td>
+                <td data-title="description" class="td-text-small" colspan="2">{{repo.description}}</td>
+                <td data-title="language" class="td-text-small">{{repo.language}}</td>
+                <td data-title="release"> <a href="#!/release/{{repo.name}}" class="btn btn-outline-secondary">Releases</a></td>
+                <td data-title="commit"> <a href="#!/commits/{{repo.name}}" class="btn btn-outline-secondary">Commits</a></td>
+                <td data-title="updated_at" class="td-text-small date-inline" colspan="2"><span>Last Updated: {{repo.updated_at | date : short : timezone}} </span> </td>
+                </tr>
               </table>
 
-            <!-- <div ng-repeat="repo in repoData | filter:searchText  | orderBy:predicate:reverse" class="list-group-item ">
-                <div class="row">
-                    <div class="col-md-8">
-                        <h4>{{repo.name}}
-                        </br>
-                        </h4>
-                        <h6><small>{{repo.description}}</small></h6>
-                        <small>
-                          <p>Languages: {{repo.language}}</p>
-                            <a href="{{repo.html_url}}" class="">
-                                Link to repository
-                            </a>
-                        </small>
-                          <p><a href="#!/release/{{repo.name}}">Show releases</a></p>
-                          <p><a href="#!/commits/{{repo.name}}">Show commits</a></p>
-                    </div>
-                    <div class="col-md-4">
-                        <dl class="dl-horizontal">
-                          <dt>Last Updated:</dt>
-                          <dd>{{repo.updated_at | date : short : timezone}}</dd>
-                          <dt>Created:</dt>
-                          <dd>{{repo.created_at| date : short : timezone}}</dd>
-                        </dl>
-                    </div>
-                </div>
-            </div> -->
           </div>
 
         </div>

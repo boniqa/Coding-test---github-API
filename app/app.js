@@ -2,11 +2,9 @@ var gitApp = angular.module( 'gitApp', ['ui.router', 'ngAnimate', 'ngTable']);
 
 gitApp.service('SpinnerService', ['$rootScope', function($rootScope) {
   function showSpinner($rootScope){
-    console.log('here');
     $('.loading').show();
   };
   function hideSpinner($rootScope){
-    console.log('now here');
     $('.loading').hide();
   };
 
@@ -26,50 +24,6 @@ gitApp.run(function($transitions) {
   });
 })
 
-// gitApp.run(run);
-// run.$inject = ['$rootScope'];
-// function run ($rootScope) {
-//   $rootScope.spinner = {active: true};
-// }
-
-
-
-
-
-// gitApp.run(['$rootScope' , function($rootScope){
-//   $rootScope.$on('$viewContentLoading', function(e, toState, toParams, fromState, fromParams, options){
-//     // console.log('in $stateChangeStart');
-//     // if( toState.resolve){
-//       $rootScope.isLoading = true;
-//     // }
-//   });
-//
-//   $rootScope.$on('$viewContentLoaded', function(e, toState, toParams, fromState, fromParams){
-//     // console.log('in $stateChangeSuccess');
-//     // if( toState.resolve){
-//       $rootScope.isLoading = false;
-//     // }
-//   });
-// }]);
-// gitApp.config(function ($routeProvider){
-//     $routeProvider
-//       .when('/profile',
-//                 {
-//                     controller: 'gitHubController',
-//                     templateUrl: 'templates/profile.html'
-//                 })
-//                 .when('/release/:name',
-//                 {
-//                   controller: 'ReleaseController',
-//                   templateUrl: 'templates/release.html'
-//                 })
-//                 .when('/commits/:name',
-//                 {
-//                   controller: 'CommitController',
-//                   templateUrl: 'templates/commits.html'
-//                 })
-//                 .otherwise({redirectTo: '/profile'});
-// });
 
 gitApp.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
 
