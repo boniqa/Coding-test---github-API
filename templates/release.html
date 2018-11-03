@@ -13,7 +13,7 @@
   <h1 class="text-center">
     <span> {{repo_name}} releases </span>
     <br/>
-    <a href="#!/profile/" class="btn btn-outline-secondary"<i class="fas fa-arrow-left"></i>  Back
+    <a href="#!/profile/" class="btn btn-outline-secondary"><i class="fas fa-arrow-left"></i>  Back
     </a>
   </h1>
 
@@ -39,7 +39,7 @@
                 <td data-title="author" class="td-text-small">{{rel.author.login}}</td>
                 <td data-title="avatar"><img src="{{rel.author.avatar_url}}" alt="Avatar" class="avatar"></td>
                 <td data-title="published_at" class="td-text-small">  <span>Published at: </span>{{rel.published_at | date : short : timezone}} </td>
-                <td data-title="release"> <a href="{{rel.html_url}}" class="btn btn-outline-secondary">Release note</a></td>
+                <td data-title="release"> <a href="{{rel.html_url}}" class="btn btn-outline-secondary" target="_blank">Release note</a></td>
               </tr>
               </table>
 

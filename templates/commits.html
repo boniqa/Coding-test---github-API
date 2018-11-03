@@ -15,20 +15,19 @@
     <span> {{repo_name}} commits </span>
     <br/>
     <a href="#!/profile/" class="btn btn-outline-secondary" >
-      <i class="fas fa-arrow-left"></i>Back
+      <i class="fas fa-arrow-left"></i> Back
     </a>
   </h1>
 
   <div class="container">
         <div class="panel-heading">
-
-                            <form class="form-inline">
-                                <span>
-                                    <h4>Commits <span class="badge">{{commitsData.length}}</span>
-                                    <input ng-model="searchText" placeholder="Find a commit..." class="form-control input-sm">
-                                    </h4>
-                                </span>
-                            </form>
+            <form class="form-inline">
+                <span>
+                    <h4>Commits <span class="badge">{{commitsData.length}}</span>
+                      <input ng-model="searchText" placeholder="Find a commit..." class="form-control input-sm">
+                    </h4>
+                </span>
+            </form>
         </div>
 
         <div class="panel-body">

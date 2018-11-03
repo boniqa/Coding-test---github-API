@@ -1,10 +1,10 @@
 var gitApp = angular.module( 'gitApp', ['ui.router', 'ngAnimate', 'ngTable']);
 
-gitApp.service('SpinnerService', ['$rootScope', function($rootScope) {
-  function showSpinner($rootScope){
+gitApp.service('SpinnerService', [function() {
+  function showSpinner(){
     $('.loading').show();
   };
-  function hideSpinner($rootScope){
+  function hideSpinner(){
     $('.loading').hide();
   };
 
