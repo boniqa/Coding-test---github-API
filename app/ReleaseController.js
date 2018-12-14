@@ -1,4 +1,4 @@
-gitApp.controller('ReleaseController', ['$scope', 'result', '$stateParams', 'NgTableParams', '$filter', function ($scope, result, $stateParams, NgTableParams, $filter){
+angular.module('gitApp').controller('ReleaseController', ['$scope', 'result', '$stateParams', 'NgTableParams', '$filter', function ($scope, result, $stateParams, NgTableParams, $filter){
   $scope.releasesData = result;
   $scope.repo_name = $stateParams.name;
   $scope.relTable = new NgTableParams({

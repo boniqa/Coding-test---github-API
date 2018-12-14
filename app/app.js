@@ -1,21 +1,7 @@
-var gitApp = angular.module( 'gitApp', ['ui.router', 'ngAnimate', 'ngTable']);
+angular.module( 'gitApp', ['ui.router', 'ngAnimate', 'ngTable']);
 
-gitApp.service('SpinnerService', [function() {
-  function showSpinner(){
-    $('.loading').show();
-  };
-  function hideSpinner(){
-    $('.loading').hide();
-  };
 
-  var count = 0;
-  return {
-    transitionStart: function() { if (++count > 0) showSpinner(); },
-    transitionEnd: function() { if (--count <= 0) hideSpinner(); },
-  }
-}]);
-
-gitApp.run(function($transitions) {
+angular.module('gitApp').run(function($transitions) {
 
   $transitions.onStart({ }, function(trans) {
     var SpinnerService = trans.injector().get('SpinnerService');
@@ -25,7 +11,7 @@ gitApp.run(function($transitions) {
 })
 
 
-gitApp.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
+angular.module('gitApp').config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
 
   $urlRouterProvider.otherwise('/');
 

@@ -1,4 +1,4 @@
-gitApp.factory('RepoService', ['$http', '$q', function($http, $q){
+angular.module('gitApp').factory('RepoService', ['$http', '$q', function($http, $q){
 
   var factory = {};
   factory.getInfo= function(){

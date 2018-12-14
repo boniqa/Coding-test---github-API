@@ -1,4 +1,4 @@
-gitApp.controller('gitHubController', ['$scope', 'result', 'info', 'NgTableParams', '$filter',function( $scope, result, info, NgTableParams, $filter) {
+angular.module('gitApp').controller('gitHubController', ['$scope', 'result', 'info', 'NgTableParams', '$filter',function( $scope, result, info, NgTableParams, $filter) {
 
   $scope.repoData = result;
   $scope.userData = info;
@@ -9,7 +9,7 @@ gitApp.controller('gitHubController', ['$scope', 'result', 'info', 'NgTableParam
     counts: [],
     total: $scope.repoData.length,
     getData: function (params) {
-        data = params.sorting() ? $filter('orderBy')($scope.repoData, params.orderBy()) : $scope.repoData;
+        var data = params.sorting() ? $filter('orderBy')($scope.repoData, params.orderBy()) : $scope.repoData;
         data = params.filter() ? $filter('filter')(data, params.filter()) : data;
         return data.slice((params.page() - 1) * params.count(), params.page() * params.count());
     }
