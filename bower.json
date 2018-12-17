@@ -1,0 +1,23 @@
+{
+  "name": "github_api",
+  "description": "AngularJS app using GitHub API",
+  "main": "angular.min.js",
+  "authors": [
+    "boniqa <budnik.wer@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/boniqa/Coding-test---github-API",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-ui-router": "^1.0.20",
+    "bootstrap": "^4.1.3",
+    "angular": "^1.7.5",
+    "angular-animate": "^1.7.5"
+  }
+}

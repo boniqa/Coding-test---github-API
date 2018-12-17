@@ -21,5 +21,5 @@ angular.module('gitApp')
             };
     }],
     
-    templateUrl: 'app/components/component.spinner.html'
+    templateUrl: 'components/component.spinner.html'
 })

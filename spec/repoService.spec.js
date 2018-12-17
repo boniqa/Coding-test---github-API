@@ -1,12 +1,17 @@
 describe('app service test', function(){
 
+    beforeEach(angular.mock.module('ui.router'));
 
-  beforeEach(function(done){
+    beforeEach(module(function ($urlRouterProvider) {
+            $urlRouterProvider.deferIntercept();
+    }));
+
+    beforeEach(function(done){
         var self = this;
 
 
         module('gitApp');
-        module('ui.router');
+        // module('ui.router');
         module('ngAnimate');
         module('ngTable');
 

@@ -15,17 +15,17 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'angular.min.js',
-      "angular-ui-router.js",
-      "angular-animate.js",
-      "ng-table.min.js",
+      'app/assets/js/angular.min.js',
+      "app/assets/js/angular-ui-router.js",
+      "app/assets/js/angular-animate.js",
+      "app/assets/js/ng-table.min.js",
       //files to be tested
       'app/app.js',
-      'app/CommitController.js',
-      'app/gitController.js',
-      'app/ReleaseController.js',
-      'app/repoService.js',
-      'app/app.components.js',
+      'app/components/CommitController.js',
+      'app/components/gitController.js',
+      'app/components/ReleaseController.js',
+      'app/components/repoService.js',
+      'app/components/app.components.js',
 
       //pull in angular mocks
 
@@ -52,7 +52,8 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      'app/*.js': ['coverage']
+      'app/*.js': ['coverage'],
+      'app/components/*.js' : ['coverage']
     },
 
 

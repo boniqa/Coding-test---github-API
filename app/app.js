@@ -1,16 +1,5 @@
 angular.module( 'gitApp', ['ui.router', 'ngAnimate', 'ngTable']);
 
-
-angular.module('gitApp').run(function($transitions) {
-
-  $transitions.onStart({ }, function(trans) {
-    var SpinnerService = trans.injector().get('SpinnerService');
-    SpinnerService.transitionStart();
-    trans.promise.finally(SpinnerService.transitionEnd);
-  });
-})
-
-
 angular.module('gitApp').config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
 
   $urlRouterProvider.otherwise('/');

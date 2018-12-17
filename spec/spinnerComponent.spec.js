@@ -7,7 +7,7 @@ describe('spinner test', function(){
     beforeEach(function(){
         var self = this;
         module('ui.router');
-        // module('ngAnimate');
+        module('ngAnimate');
         // module('ngTable');
 
         
