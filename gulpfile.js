@@ -20,7 +20,9 @@ gulp.task('vendor', function () {
         'bower_components/angular/angular.js',
         'bower_components/angular-ui-router/release/angular-ui-router.js',
         'bower_components/angular-animate/angular-animate.js',
+        'bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
         'app/assets/js/ng-table.min.js'
+        
         
     ])
     .pipe(concat('vendor.js', { newLine: ';' }))
@@ -31,7 +33,6 @@ gulp.task('vendor', function () {
 
 });
 
-gulp.task('build', function(done){
-    gulp.parallel('app', 'vendor'); 
-    done();
+gulp.task('build', function(){
+    gulp.start('app', 'vendor'); 
 });

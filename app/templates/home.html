@@ -1,20 +1,17 @@
 <div class="container">
 
-  <!-- <div class="loading">
-    <div>
-      <div class="c1"></div>
-      <div class="c2"></div>
-      <div class="c3"></div>
-      <div class="c4"></div>
-    </div>
-    <span>loading</span>
-  </div> -->
-
   <h1 class="text-center">
     <span> {{userData.name}} profile</span>
     <br/>
-    <a href="{{userData.html_url}}" class="btn btn-outline-secondary" target="_blank"> <i class="fab fa-github"></i>
+    <a href="{{userData.html_url}}" class="btn btn-default" target="_blank"> <i class="fab fa-github"></i>
     {{userData.login}}
+    </a>
+    
+    <button uib-popover="{{dynamicPopover.content}}" popover-trigger="'mouseenter'" popover-placement="bottom" popover-title="{{dynamicPopover.title}}" type="button" class="btn btn-default">{{dynamicPopover.title}}</button>
+    <button uib-popover-template="dynamicPopover.templateUrl" popover-placement="bottom" type="button" class="btn btn-default">Popover With Template</button>
+
+    <a href="#" class="btn btn-default" ng-click="openModal()">
+    Modal
     </a>
   </h1>
 
@@ -37,8 +34,8 @@
                 <td data-title="name" colspan="2" class="name-link"><a href="{{repo.html_url}}" target="_blank"><i class="fab fa-github"></i>  {{repo.name}}</a></td>
                 <td data-title="description" class="td-text-small" colspan="2">{{repo.description}}</td>
                 <td data-title="language" class="td-text-small">{{repo.language}}</td>
-                <td data-title="release"> <a href="#!/release/{{repo.name}}" class="btn btn-outline-secondary">Releases</a></td>
-                <td data-title="commit"> <a href="#!/commits/{{repo.name}}" class="btn btn-outline-secondary">Commits</a></td>
+                <td data-title="release"> <a href="#!/release/{{repo.name}}" class="btn btn-default">Releases</a></td>
+                <td data-title="commit"> <a href="#!/commits/{{repo.name}}" class="btn btn-default">Commits</a></td>
                 <td data-title="updated_at" class="td-text-small date-inline" colspan="2"><span>Last Updated: {{repo.updated_at | date : short : timezone}} </span> </td>
                 </tr>
               </table>

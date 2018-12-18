@@ -46,7 +46,7 @@ font-size: 12px;
 }
 
 .panel-body .name-link a{
-  color: #004085 !important;
+  color: #7e7e7e !important;
 }
 
 li.ng-scope{
@@ -56,11 +56,16 @@ li.ng-scope{
 }
 
 li.ng-scope a{
-  color: #004085 !important;
+  color: #7e7e7e !important;
 
 }
 
 .avatar{
   height: auto;
   width: 40px;;
+}
+
+.pagination .active a{
+  background-color: #d1d1d1 !important;
+  border-color: #7e7e7e !important;
 }
