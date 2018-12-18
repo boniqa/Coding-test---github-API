@@ -30,3 +30,8 @@ gulp.task('vendor', function () {
     .pipe(gulp.dest('app/build'));
 
 });
+
+gulp.task('build', function(done){
+    gulp.parallel('app', 'vendor'); 
+    done();
+});
