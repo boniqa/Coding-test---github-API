@@ -1,6 +1,9 @@
 var customNgTable = customNgTableProvider();
 describe('app git controller test', function(){
-
+    beforeEach(angular.mock.module('ui.router'));
+    beforeEach(module(function ($urlRouterProvider) {
+        $urlRouterProvider.deferIntercept();
+    }));
     beforeEach(function(){
         var self = this;
 
@@ -15,12 +18,19 @@ describe('app git controller test', function(){
             }
         };
 
-        inject(function (_$rootScope_, _$controller_, _$filter_) {
+        this.RepoService = {
+            getRepos: function(){
+                return [];
+            }
+        }
+
+        inject(function (_$rootScope_, _$controller_, _$filter_, _$q_) {
             var self = this;
             this.$rootScope = _$rootScope_;
             var $controller = _$controller_;
             this.$filter = _$filter_;
             this.$scope = this.$rootScope.$new();
+            this.$q = _$q_;
 
             this.gitHubController = $controller('gitHubController',
                 {
@@ -29,7 +39,9 @@ describe('app git controller test', function(){
                     result: ['Franek'],
                     NgTableParams: customNgTable.provider(),
                     $filter: this.$filter,
-                    $uibModal: this.$uibModal
+                    $uibModal: this.$uibModal,
+                    RepoService: this.RepoService
+
                 });
 
         });
@@ -80,6 +92,20 @@ describe('app git controller test', function(){
         expect(this.$uibModal.open).toHaveBeenCalled();
         expect(resolveResults.repo).toBe('text');
 
+
+    });
+
+    it("should react to refresh button", function(done){
+        var self = this;
+
+        spyOn(self.RepoService, "getRepos").and.callFake(function(){
+            return self.$q.resolve([]);
+        });
+
+        this.$scope.refresh();
+        this.$rootScope.$apply();
+        expect(this.$scope.repoData).toEqual([]);
+        done();
 
     });
 });

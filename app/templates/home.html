@@ -16,15 +16,20 @@
   </h1>
 
   <div class="container main-table">
-        <div class="panel-heading">
-                <form class="form-inline">
-                      <span>
-                          <h4>Repos <span class="badge">{{repoData.length}}</span>
-                            <input ng-model="searchText" placeholder="Find a repo..." class="form-control input-sm">
-                          </h4>
-                      </span>
-                </form>
-        </div>
+    
+      <div class="panel-heading">
+        <form class="form-inline">
+          <span>
+            <h4>Repos <span class="badge">{{repoData.length}}</span>
+              <input ng-model="searchText" placeholder="Find a repo..." class="form-control input-sm">
+            </h4>
+          </span>
+          
+
+        </form>
+        <button type="button" class="btn btn-default" ng-click="refresh()" ><i class="fas fa-redo"></i>   Refresh</button>
+      </div>
+        
 
         <div class="panel-body">
           <div class="list-group">

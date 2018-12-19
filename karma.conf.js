@@ -28,9 +28,9 @@ module.exports = function(config) {
 
       'node_modules/angular-mocks/angular-mocks.js',
       //helpers
-      'spec/helpers/*.js',
+      'app/spec/helpers/*.js',
       //tests
-      'spec/*.spec.js',
+      'app/spec/*.spec.js',
 
       // required html files
       // 'templates/commits.html',

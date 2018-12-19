@@ -24,7 +24,7 @@
 
             <table ng-table="relTable" class="table" show-filter="true">
               <tr ng-repeat="rel in $data | filter:searchText  | orderBy:predicate:reverse" class="list-group-item ">
-                <td data-title="tag" class="td-text-small"><i class="fas fa-tag"></i>{{rel.tag_name}}</td>
+                <td data-title="tag" class="td-text-small"><i class="fas fa-tag"></i> {{rel.tag_name}}</td>
                 <td data-title="name">{{rel.name}}</td>
                 <td data-title="author" class="td-text-small">{{rel.author.login}}</td>
                 <td data-title="avatar"><img src="{{rel.author.avatar_url}}" alt="Avatar" class="avatar"></td>
