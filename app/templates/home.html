@@ -10,9 +10,9 @@
     <button uib-popover="{{dynamicPopover.content}}" popover-trigger="'mouseenter'" popover-placement="bottom" popover-title="{{dynamicPopover.title1}}" type="button" class="btn btn-default">{{dynamicPopover.title1}}</button>
     <button uib-popover-template="dynamicPopover.templateUrl" popover-placement="bottom" type="button" class="btn btn-default">Popover With Template</button>
 
-    <a href="#" class="btn btn-default" ng-click="openModal()">
+    <!-- <a href="#" class="btn btn-default" ng-click="openModal()">
     Modal
-    </a>
+    </a> -->
   </h1>
 
   <div class="container main-table">
@@ -33,10 +33,11 @@
               <tr ng-repeat="repo in $data | filter:searchText  | orderBy:predicate:reverse" class="list-group-item ">
                 <td data-title="name" colspan="2" class="name-link"><a href="{{repo.html_url}}" target="_blank"><i class="fab fa-github"></i>  {{repo.name}}</a></td>
                 <td data-title="description" class="td-text-small" colspan="2">{{repo.description}}</td>
-                <td data-title="language" class="td-text-small">{{repo.language}}</td>
+                <!-- <td data-title="language" class="td-text-small">{{repo.language}}</td> -->
                 <td data-title="release"> <a href="#!/release/{{repo.name}}" class="btn btn-default">Releases</a></td>
                 <td data-title="commit"> <a href="#!/commits/{{repo.name}}" class="btn btn-default">Commits</a></td>
-                <td data-title="updated_at" class="td-text-small date-inline" colspan="2"><span>Last Updated: {{repo.updated_at | date : short : timezone}} </span> </td>
+                <td data-title="info"> <a href="#" class="btn btn-default" ng-click="openModal(repo)">Info</a></td>
+                <!-- <td data-title="updated_at" class="td-text-small date-inline" colspan="2"><span>Last Updated: {{repo.updated_at | date : short : timezone}} </span> </td> -->
                 </tr>
               </table>
 

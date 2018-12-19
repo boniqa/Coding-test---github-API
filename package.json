@@ -33,6 +33,7 @@
   "scripts": {
     "install": "bower install",
     "build": "gulp build",
+    "start": "node portal.js",
     "test": "karma start karma.conf.js",
     "debug-test": "karma start karma.conf.js  --browsers=Chrome --single-run=false --auto-watch"
   },

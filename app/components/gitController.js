@@ -1,5 +1,9 @@
 angular.module('gitApp').controller('gitHubController', ['$scope', '$uibModal','result', 'info', 'NgTableParams', '$filter',function( $scope, $uibModal, result, info, NgTableParams, $filter) {
-    
+    $scope.repoData = result;
+    $scope.userData = info;
+
+    $scope.items = ['item1', 'item2', 'item3'];
+
     $scope.dynamicPopover = {
         content: 'Hello, World!',
         templateUrl: 'components/myPopoverTemplate.html',
@@ -7,8 +11,8 @@ angular.module('gitApp').controller('gitHubController', ['$scope', '$uibModal','
         title2: 'New Title'
       };
 
-    $scope.openModal = function(){
-        $scope.items = ['item1', 'item2', 'item3'];
+    $scope.openModal = function(repo){        
+        
         $scope.animationsEnabled = true;
         var modalInstance = $uibModal.open({
             animation: true,
@@ -16,11 +20,11 @@ angular.module('gitApp').controller('gitHubController', ['$scope', '$uibModal','
             ariaDescribedBy: 'modal-body',
             templateUrl: 'components/myModalTemplate.html',
             controller: 'modalController',
-            size: 'sm',
+            size: 'lg',
             resolve: {
-                items: function(){
-                    return $scope.items;
-                }              
+                repo: function(){
+                    return repo;
+                }         
             }
           });
 
@@ -31,8 +35,7 @@ angular.module('gitApp').controller('gitHubController', ['$scope', '$uibModal','
         //   });
     };
 
-    $scope.repoData = result;
-    $scope.userData = info;
+   
     $scope.repoTable = new NgTableParams({
     page: 1,
     count: 10
@@ -49,20 +52,11 @@ angular.module('gitApp').controller('gitHubController', ['$scope', '$uibModal','
 
 
 }])
-.controller('modalController', ['items', '$uibModalInstance', '$scope', function( items, $uibModalInstance, $scope){
-    
-    $scope.test= 'hello test';
-    $scope.items = items;
-    $scope.selected = {
-        item: $scope.items[0]
-      };
+.controller('modalController', ['repo', '$uibModalInstance', '$scope', function( repo, $uibModalInstance, $scope){
+    $scope.repo = repo;
 
       $scope.ok = function () {
-        $uibModalInstance.close($scope.selected.item);
+        $uibModalInstance.close();
       };
-    
-      $scope.cancel = function () {
-        $uibModalInstance.dismiss('cancel');
-      };
-    
+
 }]);

@@ -9,6 +9,11 @@ describe('app git controller test', function(){
         module('ngAnimate');
         module('ngTable');
 
+        this.$uibModal = {
+            open: function(){
+
+            }
+        };
 
         inject(function (_$rootScope_, _$controller_, _$filter_) {
             var self = this;
@@ -24,7 +29,7 @@ describe('app git controller test', function(){
                     result: ['Franek'],
                     NgTableParams: customNgTable.provider(),
                     $filter: this.$filter,
-
+                    $uibModal: this.$uibModal
                 });
 
         });
@@ -59,4 +64,22 @@ describe('app git controller test', function(){
 		done();
 	});
 
+    it(" should check if opening modal is workig", function(){
+
+        var resolveResults = { };
+
+        spyOn(this.$uibModal, "open" ).and.callFake( function(data){ 
+        //    expect(data.resolve.repo()).toBe('text');
+            for( var key in data.resolve){
+                resolveResults[key] =  data.resolve[key]() ;
+            }
+        });
+
+        this.$scope.openModal("text");
+
+        expect(this.$uibModal.open).toHaveBeenCalled();
+        expect(resolveResults.repo).toBe('text');
+
+
+    });
 });
