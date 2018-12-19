@@ -15,10 +15,7 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'app/assets/js/angular.min.js',
-      "app/assets/js/angular-ui-router.js",
-      "app/assets/js/angular-animate.js",
-      "app/assets/js/ng-table.min.js",
+      'app/build/vendor.js',
       //files to be tested
       'app/app.js',
       'app/components/CommitController.js',

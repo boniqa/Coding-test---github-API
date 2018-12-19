@@ -3,7 +3,8 @@ angular.module('gitApp').controller('gitHubController', ['$scope', '$uibModal','
     $scope.dynamicPopover = {
         content: 'Hello, World!',
         templateUrl: 'components/myPopoverTemplate.html',
-        title: 'Title'
+        title1: 'New Title',
+        title2: 'New Title'
       };
 
     $scope.openModal = function(){
