@@ -4,6 +4,7 @@
   "description": "AngularJS app using GitHub API",
   "main": "angular.min.js",
   "dependencies": {
+    "emojione": "^4.0.0",
     "express": "^4.16.4",
     "jasmine": "^3.3.1"
   },

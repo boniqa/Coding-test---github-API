@@ -31,10 +31,18 @@ font-size: 12px;
   background-color: #f8f9fa;
 }
 
+.emoji {
+  font-size: 12px;
+  padding: 2px;
+}
 .panel-body{
   border: 1px solid #dee2e6;
 }
-
+.emoji-picker{
+  /* width: 200px;  */
+  height: 200px; 
+  overflow: scroll;
+}
 .list-group-item{
   display: inherit !important;
 }
@@ -73,4 +81,24 @@ li.ng-scope a{
 p{
 font-size: 12px;
 
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
 }

@@ -19,6 +19,7 @@
     "bootstrap": "^3.3.7",
     "angular": "^1.7.5",
     "angular-animate": "^1.7.5",
-    "angular-bootstrap": "^2.5.0"
+    "angular-bootstrap": "^2.5.0",
+    "emojione": "^4.0.0"
   }
 }
