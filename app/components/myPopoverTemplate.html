@@ -2,7 +2,7 @@
          
           <div  class="emoji-picker">
               <span ng-repeat="(key, value) in emojiList" class="emoji" ng-click='pickEmoji(value.unicode_output)'>
-                  {{convert(value.unicode_output)}}
+                  {{::convert(value.unicode_output)}}
               </span>
       
           </div>
