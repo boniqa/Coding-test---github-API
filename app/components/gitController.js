@@ -90,31 +90,33 @@ $scope.popoverEmoji = {
     title2: 'New Title'
   };
 
-$scope.emojiList = function(){
+// $scope.emojiList = function(){
     
-    // not working
+//     // not working
    
-    var emojiList = Object.values(emojiService.emojiList).map(function(emoji){
-        return emoji[unicode_output];
-    });
+//     var emojiList = Object.values(emojiService.emojiList).map(function(emoji){
+//         return emoji[unicode_output];
+//     });
 
     
    
 
-    console.log(emojiList);
+//     console.log(emojiList);
     
     
-    return emojiList;
-}
+//     return emojiList;
+// }
 
-$scope.emojiNames = $scope.emojiList();
+$scope.emojiList = emojiService.emojiList;
 
-$scope.emo = function(code){
-    console.log("inside emo method");
+// $scope.emojiNames = $scope.emojiList();
+
+// $scope.emo = function(code){
+//     console.log("inside emo method");
     
-    console.log($scope.convert(code));
+//     console.log($scope.convert(code));
     
-}
+// }
 
 $scope.convert = function(unicode) {
 	if(unicode.indexOf("-") > -1) {
